@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "watch": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "allowJs": true,
+        "declaration": true,
+        "declarationDir": "public/scripts/types",
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
