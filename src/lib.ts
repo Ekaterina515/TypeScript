@@ -1,19 +1,27 @@
-type Message = {
+export class GetData {
+  getPlace(url: string, p: boolean) {
+    if (p) return fetch(url, { method: "PATCH" });
+    else return fetch(url);
+  }
+}
+
+export function renderBlock(elementId: string, html: string): boolean {
+  const element = document.getElementById(elementId);
+  element.innerHTML = html;
+  return true;
+}
+
+type MessageType = {
   type: string;
   text: string;
 };
 
-type Action = {
+type ActionType = {
   name: string;
   handler: () => void;
 };
 
-export function renderBlock(elementId: string, html: string) {
-  const element = document.getElementById(elementId);
-  element.innerHTML = html;
-}
-
-export function renderToast(message: Message, action: Action) {
+export function renderToast(message: MessageType, action: ActionType) {
   let messageText = "";
 
   if (message != null) {
@@ -33,6 +41,7 @@ export function renderToast(message: Message, action: Action) {
       if (action != null && action.handler != null) {
         action.handler();
       }
+      renderToast(null, null);
     };
   }
 }

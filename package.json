@@ -1,30 +1,38 @@
 {
   "name": "ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Домашние задания по typescript",
   "main": "index.js",
   "scripts": {
-    "build": "rd -r public\\scripts 2>null & tsc",
-    "develop": "rd -r public\\scripts 2>null & tsc -p tsconfig-dev.json",
-    "start": "http-server -p 3000",
+    "build": "rm -rf public/scripts && tsc",
+    "develop": "rm -rf public/scripts && tsc -p tsconfig-dev.json",
+    "start": "http-server -c-1 -p 3000",
     "lint": "eslint src --ext .js --ext .ts",
     "lint-fix": "eslint src --ext .js --ext .ts --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ekaterina515/TypeScript.git"
+    "url": "git+https://github.com/Ekaterina515/TypeScript"
   },
-  "author": "Ekaterina",
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Ekaterina515",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ekaterina515/TypeScript/issues"
   },
   "homepage": "https://github.com/Ekaterina515/TypeScript#readme",
   "devDependencies": {
+    "@types/node": "^18.7.23",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
     "eslint": "^8.23.1",
     "http-server": "^14.1.1",
+    "nodemon": "^2.0.20",
     "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "node-fetch": "^3.2.10"
   }
 }

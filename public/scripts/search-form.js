@@ -1,41 +1,29 @@
 import { renderBlock } from "./lib.js";
 import { localS } from "./localStorage.js";
-import { ISearchFormData } from "./types.js";
-
 export function renderSearchFormBlock() {
-  const dateObj = new Date();
-  const datePlus2_Obj = new Date(+dateObj + 2 * 86400000);
-
-  const minDate = dateObj.toLocaleDateString("en-CA");
-  const curDate = dateObj.toLocaleDateString("en-CA");
-  const minOutDate = datePlus2_Obj.toLocaleDateString("en-CA");
-
-  dateObj.setMonth(dateObj.getMonth() + 2); // + 1 month
-  dateObj.setDate(0);
-
-  const maxOutDate = dateObj.toLocaleDateString("en-CA");
-
-  function getSearchFormData() {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    const storage: ISearchFormData = {
-      city: urlParams.get("city") ? urlParams.get("city") : "Санкт-Петербург",
-      checkin: urlParams.get("checkin") ? urlParams.get("checkin") : curDate,
-      checkout: urlParams.get("checkout")
-        ? urlParams.get("checkout")
-        : minOutDate,
-      price: urlParams.get("price") ? urlParams.get("price") : "",
-    };
-
-    localS.set("searchParams", storage);
-
-    return storage;
-  }
-
-  const storage: ISearchFormData = getSearchFormData();
-  renderBlock(
-    "search-form-block",
-    `
+    const dateObj = new Date();
+    const datePlus2_Obj = new Date(+dateObj + 2 * 86400000);
+    const minDate = dateObj.toLocaleDateString("en-CA");
+    const curDate = dateObj.toLocaleDateString("en-CA");
+    const minOutDate = datePlus2_Obj.toLocaleDateString("en-CA");
+    dateObj.setMonth(dateObj.getMonth() + 2); // + 1 month
+    dateObj.setDate(0);
+    const maxOutDate = dateObj.toLocaleDateString("en-CA");
+    function getSearchFormData() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const storage = {
+            city: urlParams.get("city") ? urlParams.get("city") : "Санкт-Петербург",
+            checkin: urlParams.get("checkin") ? urlParams.get("checkin") : curDate,
+            checkout: urlParams.get("checkout")
+                ? urlParams.get("checkout")
+                : minOutDate,
+            price: urlParams.get("price") ? urlParams.get("price") : "",
+        };
+        localS.set("searchParams", storage);
+        return storage;
+    }
+    const storage = getSearchFormData();
+    renderBlock("search-form-block", `
     <form>
       <fieldset class="search-filedset">
         <div class="row">
@@ -68,6 +56,5 @@ export function renderSearchFormBlock() {
         </div>
       </fieldset>
     </form>
-    `
-  );
+    `);
 }

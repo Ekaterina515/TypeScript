@@ -1,34 +1,23 @@
 import { renderBlock } from "./lib.js";
 import { searchApartment } from "./search.js";
-
 export function renderSearchStubBlock() {
-  renderBlock(
-    "search-results-block",
-    `
+    renderBlock("search-results-block", `
     <div class="before-results-block">
       <img src="img/start-search.png" />
       <p>Чтобы начать поиск, заполните форму и&nbsp;нажмите "Найти"</p>
     </div>
-    `
-  );
+    `);
 }
-
-export function renderEmptyOrErrorSearchBlock(reasonMessage: string) {
-  renderBlock(
-    "search-results-block",
-    `
+export function renderEmptyOrErrorSearchBlock(reasonMessage) {
+    renderBlock("search-results-block", `
     <div class="no-results-block">
       <img src="img/no-results.png" />
       <p>${reasonMessage}</p>
     </div>
-    `
-  );
+    `);
 }
-
-export function renderSearchResultsBlock(): void {
-  renderBlock(
-    "search-results-block",
-    `
+export function renderSearchResultsBlock() {
+    renderBlock("search-results-block", `
     <form id="sort">
     <div class="search-results-header">
         <p>Результаты поиска</p>
@@ -42,10 +31,8 @@ export function renderSearchResultsBlock(): void {
         </div>
     </div>
     </form>
-    `
-  );
-
-  searchApartment().then((data) => {
-    renderBlock("search-list-block", data);
-  });
+    `);
+    searchApartment().then((data) => {
+        renderBlock("search-list-block", data);
+    });
 }
